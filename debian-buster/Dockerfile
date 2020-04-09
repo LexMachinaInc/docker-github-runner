@@ -11,16 +11,16 @@ ENV RUNNER_ALLOW_RUNASROOT=true
 ENV GITHUB_ACCESS_TOKEN=""
 
 # Labels.
-LABEL maintainer="me@tcardonne.fr" \
+LABEL maintainer="sdavis@lexmachina.com" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.name="tcardonne/github-runner" \
+    org.label-schema.name="sdigit/github-runner" \
     org.label-schema.description="Dockerized GitHub Actions runner." \
-    org.label-schema.url="https://github.com/tcardonne/docker-github-runner" \
-    org.label-schema.vcs-url="https://github.com/tcardonne/docker-github-runner" \
-    org.label-schema.vendor="Thomas Cardonne" \
-    org.label-schema.docker.cmd="docker run -it tcardonne/github-runner:latest"
+    org.label-schema.url="https://github.com/LexMachinaInc/docker-github-runner" \
+    org.label-schema.vcs-url="https://github.com/LexMachinaInc/docker-github-runner" \
+    org.label-schema.vendor="Sean Davis" \
+    org.label-schema.docker.cmd="docker run -it sdigit/github-runner:latest"
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y \

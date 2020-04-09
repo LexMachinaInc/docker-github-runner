@@ -49,6 +49,8 @@ else
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${_ACCOUNT}/${_REPO}/actions/runners/registration-token" \
             | jq -r '.token')"
+        mkdir /runner
+        echo ${RUNNER_TOKEN} > /runner/token
     fi
 
     ./config.sh \

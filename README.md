@@ -1,6 +1,6 @@
 # GitHub Runner
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/tcardonne/github-runner)](https://hub.docker.com/r/tcardonne/github-runner)
+[![Docker Pulls](https://img.shields.io/docker/pulls/sdigit/docker-github-runner)](https://hub.docker.com/r/sdigit/docker-github-runner)
 
 -----------
 GitHub allows developers to run GitHub Actions workflows on your own runners.
@@ -21,7 +21,7 @@ docker run -it --name my-runner \
     -e RUNNER_NAME=my-runner \
     -e GITHUB_ACCESS_TOKEN=token \
     -e RUNNER_REPOSITORY_URL=https://github.com/... \
-    tcardonne/github-runner
+    sdigit/github-runner
 ```
 
 ### Using Docker inside your Actions
@@ -34,7 +34,7 @@ docker run -it --name my-runner \
     -e GITHUB_ACCESS_TOKEN=token \
     -e RUNNER_REPOSITORY_URL=https://github.com/... \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    tcardonne/github-runner
+    sdigit/github-runner
 ```
 
 ### Using docker-compose.yml
@@ -45,7 +45,7 @@ version: "3.7"
 
 services:
     runner:
-      image: tcardonne/github-runner:latest
+      image: sdigit/github-runner:latest
       environment:
         RUNNER_NAME: "my-runner"
         RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
@@ -77,3 +77,9 @@ The following environment variables allows you to control the configuration para
 
 The GitHub runner (the binary) will update itself when receiving a job, if a new release is available.
 In order to allow the runner to exit and restart by itself, the binary is started by a supervisord process.
+
+## Runner expectations
+
+This modified version of docker-github-runner is intended to be run under kubernetes.
+It writes the acquired runner token to `/runner/token` for later use in deprovisioning.
+It expects a volume mounted at `/runner` to exist, and will write its runner registration token to `/runner/token` for use in deprovisioning the runner.
